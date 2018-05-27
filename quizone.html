@@ -1,0 +1,83 @@
+<!doctype html>
+<head>
+	<title>My Quiz</title>
+</head>
+<style>
+body {
+	background-color:#ffffff;
+}
+h1 {
+	color:black;
+	text-align: center;
+}
+p{
+	font-family: "Arial";
+	font-size: 18px;
+	text-align: center;
+}
+.house {
+	max-width: 200px;
+	width: 100%;
+}
+</style>
+<body>
+	<h1>Quiz</h1>
+	<form>
+		Pick your house!
+		<blockquote>
+			<input type="radio" name="house" id="slytherin" value="slytherin"><label for="slytherin">Slytherin</label>
+			<br><input type="radio" name="house" id="ravenclaw" value="ravenclaw"><label for="ravenclaw">Ravenclaw</label>
+			<br><input type="radio" name="house" id="hufflepuff" value="hufflepuff"><label for="hufflepuff">Hufflepuff</label>
+			<br><input type="radio" name="house" id="griffindor" value="griffindor"><label for="griffindor">Griffindor</label>
+		</blockquote>
+		<input type="button" id="quizButton" value="Get Results!">
+	</form>
+	<p id="houseParagraph"></p>
+</body>
+<script>
+function init() {
+	var button = document.getElementById('quizButton');
+	button.onclick = checkQuiz;
+}
+function checkQuiz() {
+	//alert('Button was clicked!');
+	var house;
+	var inputs = document.getElementsByName('house');
+	for (var i=0; i < inputs.length; i++) {
+		if (inputs[i].checked) {
+			house = inputs[i].value;
+			alert(house);
+			displayHouse(house);
+		}
+	}
+	if (!house) {
+		alert('Please choose a house.');
+	}
+}
+function displayHouse(house) {
+	var image = document.createElement('img');
+	image.className = 'house';
+	var source = document.getElementById('houseParagraph');
+	var text = 'Congratulations! You\'re in ' + house + '!';
+	switch(house) {
+		case 'Slytherin':
+			image.src = 'http://www.hp-lexicon.org/images/icons/shield_sly.jpg';
+			break;
+		case 'Gryffindor':
+			image.src = 'http://www.hp-lexicon.org/images/icons/shield_01-5B1-5D.jpg';
+			break;
+		case 'Hufflepuff':
+			image.src = 'http://www.hp-lexicon.org/images/icons/shield_huf.jpg';
+			break;
+		case 'Ravenclaw':
+			image.src = 'http://www.hp-lexicon.org/images/icons/shield_rav.jpg';
+			break;
+		default:
+			image.src = '';
+	}
+	source.appendChild(image);
+	source.innerHTML += '<br>' + text;
+}
+window.onload = init;
+</script>
+	</html>

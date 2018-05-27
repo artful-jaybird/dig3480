@@ -1,0 +1,328 @@
+<!doctype html>
+<head>
+	<title>Are you a Hero, Anti-Hero, or Villain?</title>
+</head>
+<style>
+body {
+	background-color: black;
+	background-image: url("https://i.imgur.com/ayY28cC.jpg");
+	color: #ffffff;
+}
+h1 {
+	color: red;
+	text-align: center;
+	font-size: 36px;
+}
+p{
+	color: white;
+	font-family: "Arial";
+	font-size: 18px;
+	text-align: center;
+}
+.button {
+	background-color: black;
+	border: 2px solid red;
+	border-radius: 12px;
+	color: white;
+	padding: 12px 28px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button:hover {
+	background-color: red;
+	color: white;
+}
+</style>
+<body>
+	<h1>Are you a Hero, Anti-Hero, or Villain?</h1>
+	<p> Everyone comes at the world in a different way. Which is yours?</p>
+	<form>
+		What do YOU see yourself as?
+		<blockquote>
+			<input type="radio" name="q1" id="q1" value="Hero"><label for="Hero">Hero</label>
+			<br><input type="radio" name="q1" id="q1" value="Antihero"><label for="Antihero">Anti-Hero</label>
+			<br><input type="radio" name="q1" id="q1" value="Villain"><label for="Villain">Villain</label>
+		</blockquote>
+	</form>
+	<form>
+		Capes?
+		<blockquote>
+			<input type="radio" name="q2" id="q2" value="Villain"><label for="Villain">Always capes.</label>
+			<br><input type="radio" name="q2" id="q2" value="Antihero"><label for="Antihero">Maybe capes?</label>
+			<br><input type="radio" name="q2" id="q2" value="Hero"><label for="Hero">No capes!</label>
+		</blockquote>
+	</form>
+	<form>
+		When would you lie?
+		<blockquote>
+			<input type="radio" name="q3" id="q3" value="Antihero"><label for="Antihero">If it serves a purpose.</label>
+			<br><input type="radio" name="q3" id="q3" value="Hero"><label for="Hero">If there's no other choice.</label>
+			<br><input type="radio" name="q3" id="q3" value="Villain"><label for="Villain">If I can get away with it.</label>
+		</blockquote>
+	</form>
+	<form>
+		How often do your plans work out?
+		<blockquote>
+			<input type="radio" name="q4" id="q4" value="Villain"><label for="Villain">Seldom.</label>
+			<br><input type="radio" name="q4" id="q4" value="Antihero"><label for="Antihero">Often.</label>
+			<br><input type="radio" name="q4" id="q4" value="Hero"><label for="Hero">Always.</label>
+		</blockquote>
+	</form>
+	<form>
+		Got helpers?
+		<blockquote>
+			<input type="radio" name="q5" id="q5" value="Hero"><label for="Hero">A trusted team.</label>
+			<br><input type="radio" name="q5" id="q5" value="Villain"><label for="Villain">A 'trusted' team.</label>
+			<br><input type="radio" name="q5" id="q5" value="Antihero"><label for="Antihero">Nah, hasn't worked out.</label>
+		</blockquote>
+	</form>
+	<form>
+		What do you wear for a night out on the town?
+		<blockquote>
+			<input type="radio" name="q6" id="q6" value="Villain"><label for="Villain">Striking, often expensive outfits with select multi-purpose accessories.</label>
+			<br><input type="radio" name="q6" id="q6" value="Hero"><label for="Hero">My favorites, what's comfortable, or what looks good. Maybe some overlap with "work" clothes.</label>
+			<br><input type="radio" name="q6" id="q6" value="Antihero"><label for="Antihero">Whatever the event calls for, plus my usual array of ‘just in case’ accessories.</label>
+		</blockquote>
+	</form>
+	<form>
+		What's your "work clothes" aesthetic?
+		<blockquote>
+			<input type="radio" name="q7" id="q7" value="Antihero"><label for="Antihero">Sensible, generally dark-colored or simply not ‘flashy.’</label>
+			<br><input type="radio" name="q7" id="q7" value="Hero"><label for="Hero">Something striking, noticeable, and easily remembered.</label>
+			<br><input type="radio" name="q7" id="q7" value="Villain"><label for="Villain">Drama and contrast, with a unique silhouette!</label>
+		</blockquote>
+	</form>
+	<form>
+		How about your relationships?
+		<blockquote>
+			<input type="radio" name="q8" id="q8" value="Antihero"><label for="Antihero">My loved ones are safer away from me.</label>
+			<br><input type="radio" name="q8" id="q8" value="Hero"><label for="Hero">I love them dearly and protect them.</label>
+			<br><input type="radio" name="q8" id="q8" value="Villain"><label for="Villain">My loved ones can never know what it is I do. It keeps them safe.</label>
+		</blockquote>
+	</form>
+	<form>
+		In school, were you:
+		<blockquote>
+			<input type="radio" name="q9" id="q9" value="Antihero"><label for="Antihero">The class president.</label>
+			<br><input type="radio" name="q9" id="q9" value="Villain"><label for="Villain">Very familiar with the Principal's office.</label>
+			<br><input type="radio" name="q9" id="q9" value="Hero"><label for="Hero">The teacher's pet.</label>
+		</blockquote>
+	</form>
+	<form>
+		How’s your temper?
+		<blockquote>
+			<input type="radio" name="q10" id="q10" value="Hero"><label for="qHero">I keep it in check unless someone pushes me too far.</label>
+			<br><input type="radio" name="q10" id="q10" value="Villain"><label for="Villain">Terrifying at the slightest misstep.</label>
+			<br><input type="radio" name="q10" id="q10" value="Antihero"><label for="Antihero">Unleashed on those who deserve it.</label>
+		</blockquote>
+		<input type="button" id="quizButton" class="button" value="Get Results!">
+	</form>
+	<p id="resultsPara"></p>
+	<p id="source"></p>
+</body>
+<script>
+//button, this was all your fault BUT I WIN
+var button = document.getElementById('quizButton');
+	button.onclick = checkQuiz;
+
+function checkQuiz(){
+		var heroType = 0;
+		var villainType = 0;
+		var antiType = 0;
+
+		//q1
+		var inputs = document.getElementsByName('q1');
+		var answerTally;
+		answerTally = findValue(inputs);
+		switch(answerTally) {
+			case "Hero":
+				heroType++;
+				break;
+			case "Antihero":
+				antiType++;
+				break;
+			case "Villain":
+				villainType++;
+				break;
+		}
+		//q2
+		var inputs = document.getElementsByName('q2');
+		var answerTally;
+		answerTally = findValue(inputs);
+		switch(answerTally) {
+			case "Hero":
+				heroType++;
+				break;
+			case "Antihero":
+				antiType++;
+				break;
+			case "Villain":
+				villainType++;
+				break;
+		}
+		//q3
+		var inputs = document.getElementsByName('q3');
+		var answerTally;
+		answerTally = findValue(inputs);
+		switch(answerTally) {
+			case "Hero":
+				heroType++;
+				break;
+			case "Antihero":
+				antiType++;
+				break;
+			case "Villain":
+				villainType++;
+				break;
+		}
+		//q4
+		var inputs = document.getElementsByName('q4');
+		var answerTally;
+		answerTally = findValue(inputs);
+		switch(answerTally) {
+			case "Hero":
+				heroType++;
+				break;
+			case "Antihero":
+				antiType++;
+				break;
+			case "Villain":
+				villainType++;
+				break;
+		}
+		//q5
+		var inputs = document.getElementsByName('q5');
+		var answerTally;
+		answerTally = findValue(inputs);
+		switch(answerTally) {
+			case "Hero":
+				heroType++;
+				break;
+			case "Antihero":
+				antiType++;
+				break;
+			case "Villain":
+				villainType++;
+				break;
+		}
+		//q6
+		var inputs = document.getElementsByName('q6');
+		var answerTally;
+		answerTally = findValue(inputs);
+		switch(answerTally) {
+			case "Hero":
+				heroType++;
+				break;
+			case "Antihero":
+				antiType++;
+				break;
+			case "Villain":
+				villainType++;
+				break;
+		}
+		//q7
+		var inputs = document.getElementsByName('q7');
+		var answerTally;
+		answerTally = findValue(inputs);
+		switch(answerTally) {
+			case "Hero":
+				heroType++;
+				break;
+			case "Antihero":
+				antiType++;
+				break;
+			case "Villain":
+				villainType++;
+				break;
+		}
+		//q8
+		var inputs = document.getElementsByName('q8');
+		var answerTally;
+		answerTally = findValue(inputs);
+		switch(answerTally) {
+			case "Hero":
+				heroType++;
+				break;
+			case "Antihero":
+				antiType++;
+				break;
+			case "Villain":
+				villainType++;
+				break;
+		}
+		//q9
+		var inputs = document.getElementsByName('q9');
+		var answerTally;
+		answerTally = findValue(inputs);
+		switch(answerTally) {
+			case "Hero":
+				heroType++;
+				break;
+			case "Antihero":
+				antiType++;
+				break;
+			case "Villain":
+				villainType++;
+				break;
+		}
+		//q10
+		var inputs = document.getElementsByName('q10');
+		var answerTally;
+		answerTally = findValue(inputs);
+		switch(answerTally) {
+			case "Hero":
+				heroType++;
+				break;
+			case "Antihero":
+				antiType++;
+				break;
+			case "Villain":
+				villainType++;
+				break;
+		}
+
+
+var image = document.createElement('img');
+var source = document.getElementById('resultsPara');
+
+//comparing answer tally???? workpls
+if ((heroType >= antiType) && (heroType >= villainType)) {
+	image.src = 'https://upload.wikimedia.org/wikipedia/en/6/6b/DC_Comics_Bluebird_Batman_28.png';
+	document.getElementById('source').innerHTML = 'You are a Hero, saving the day and beloved by many.';
+}
+else if ((antiType >= heroType) && (antiType >= villainType)) {
+	image.src = 'http://www.behindthevoiceactors.com/_img/chars/red-x-teen-titans-5.07.jpg';
+	document.getElementById('source').innerHTML = 'You\'re an Anti-hero, doing good by any means necessary.';
+}
+else if ((villainType >= antiType) && (villainType >= heroType)) {
+	image.src = 'http://www.pngmart.com/files/4/Ultron-PNG-Transparent-Image.png';
+	document.getElementById('source').innerHTML = 'You\'re a villain, striking fear and awe wherever you go.';
+}
+else {
+	println("Oops, something went wrong. Try submitting again!");
+}
+
+source.appendChild(image);
+
+//pls work
+function findValue(inputs) {
+var answerTally;
+for (var i=0; i<inputs.length; i++)
+
+{
+	if (inputs[i].checked) {
+		answerTally = inputs[i].value;
+}
+}
+	return answerTally;
+
+}
+}
+//thus ends Jay's adventure, may it be successful
+</script>
+	</html>
