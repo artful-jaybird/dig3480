@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+<head>
+	<title>Mastermind</title>
+<meta charset="utf-8">
+<style>
+body {
+	background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/swirl_pattern.png");
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+ 	 background-size: cover;
+}
+
+h1 {
+	font-size: 50px;
+	text-align: center;
+	text-decoration: underline;
+	padding: 20px;
+	width: 50%;
+}
+
+p {
+	font-size: 24px;
+	text-align: center;
+	padding: 5px;
+	width: 50%;
+}
+
+#body {
+	font-size: 18px;
+	background-color: silver;
+	margin-left: 110px;
+	margin-right: 110px;
+	margin-top: 30px;
+	padding: 10px 10px 10px 10px;
+}
+
+#header{
+	border-style: ridge;
+	border-width: 20px;
+	border-color: black;
+}
+
+#guessList {
+	list-style-type: none;
+}
+#options {
+	text-align: center;
+}
+.blue {
+	width: 30px;
+	height: 30px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 15px;
+	display: inline-block;
+	background-color: #4169E1;
+}
+		
+.red {
+	width: 30px;
+	height: 30px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 15px;
+	display: inline-block;
+	background-color: #CD5C5C;
+}
+		
+.green {
+	width: 30px;
+	height: 30px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 15px;
+	display: inline-block;
+	background-color: #008080;
+}
+		
+.key {
+	width: 30px;
+	height: 30px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 15px;
+	display: inline-block;
+	background-color: #708090;
+}
+.close {
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	background-color: blue;
+}
+
+.correct {
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	background-color: #00FF7F;
+}
+
+.incorrect {
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	background-color: #800000;
+}
+
+#pastList {
+	text-align: center;
+}
+
+#selectionList {
+	text-align: center;
+}
+
+#winnar {
+	text-align: center;
+}
+</style>
+<script>
+var inputList = [ "r", "g","b", "k"]
+var secret = "";
+var userGuess = "";
+var guessCount = 0;
+//no spamming colors
+const maxGuess = 4;
+var youWin = document.createTextNode('You won! Hooray!');
+var imgWin = document.createElement("img");
+imgWin.setAttribute("src", "https://zippy.gfycat.com/MiniatureGenerousCornsnake.gif");
+
+//generate new code, wipe previous results
+function init() {
+	userGuess = "";
+	guessCount = 0;
+	secret = "";
+	for( i = 0; i < maxGuess; i++ ) {
+        secret += inputList[Math.floor( Math.random() * maxGuess)];
+    }
+    //because cheating is allowed to make sure this function works
+    //alert(secret);
+    document.getElementById('winnar').innerHTML = '';
+    document.getElementById("selectionList").innerHTML = "Your Guess Here";
+	document.getElementById("pastList").innerHTML = "";
+
+}
+
+
+function pick(color) {
+	if (guessCount == 0) {
+		document.getElementById("selectionList").innerHTML = "";
+	}
+	//alert("Pick a color.");
+	switch (color) {
+		case "red":
+		//alert("Picked Red.");
+		makeSelection("reDiv", "r");
+		break;
+		case "green":
+		makeSelection("grDiv", "g");
+		break;
+		case "blue":
+		makeSelection("blDiv", "b");
+		break;
+		case "key":
+		makeSelection("keDiv", "k");
+		break;
+		default:
+			alert("That's not a color.");
+		break;
+	}
+	if (isCorrect() == true) {
+		//victory message, woo! Now including image! But no break between without breaking. OH WELL.
+		document.getElementById("winnar").appendChild(youWin);
+		document.getElementById("winnar").appendChild(imgWin);
+	} else if (guessCount == maxGuess) {
+		applyBackgrounds();
+		guessCount = 0;
+		userGuess = "";
+	}
+}
+
+//mad scientist time, cloning the stuff
+function makeSelection(div, color) {
+	if (guessCount < maxGuess) {
+		var clone = document.getElementById(div).cloneNode(true);
+		document.getElementById("selectionList").appendChild(clone);
+		userGuess += color;
+		guessCount++;
+	}
+}
+
+function isCorrect() {
+	if (userGuess.length != maxGuess) return false;
+	for(i = 0; i < maxGuess; i++){
+		if(secret[i]!= userGuess[i]) {
+			return false;
+		}
+	}
+	return true;
+}
+
+//show if you're close, correct, or incorrect - works at last!
+function applyBackgrounds() {
+	if (guessCount == maxGuess) {
+		li = document.createElement("li");
+		li.className = "newest";
+		for (i = 0; i < maxGuess; i++) {
+			var bg = "";
+			bg = document.createElement("div");
+			if (userGuess[i] == secret[i]) {
+				bg.className = "correct";
+			} else if (secret.search(userGuess[i]) > -1) {
+				bg.className = "close";
+			} else {
+				bg.className = "incorrect";
+			}
+			bg.appendChild(document.getElementById("selectionList").firstChild);
+			li.appendChild(bg);
+		}
+		document.getElementById("pastList").insertBefore(li, document.getElementById("pastList").firstChild);
+		document.getElementById("selectionList").innerHTML = "Your Input Here";
+	}
+}
+//idk why the DIVs center differently than everything else
+</script>
+</head>
+<body>
+	<!--p>Try your hand at guessing the code, if I can ever get this to work.
+	</p-->
+	<center><h1>Welcome to Mastermind!</h1></center>
+	<center><p>Here's a deceptively simple game.</p>
+	<p>Click the Start/Restart button to begin your game. Then click the colors below to uncover the super-secret color code sequence. Keep trying! Try some more. Did you get it?</p>
+		<div id = "options" class = "container">
+			<div id = "reDiv" class = "red"   onclick = "pick('red')"   > </div>
+			<div id = "grDiv" class = "green" onclick = "pick('green')" > </div>
+			<div id = "blDiv" class = "blue"  onclick = "pick('blue')"  > </div>
+			<div id = "keDiv" class = "key"   onclick = "pick('key')"   > </div>
+		</div>
+	<form>
+		<!--input type="button" id="startButton" value="Guess the Code"-->
+		<center><input type="button" id="reset" value="Start/Restart" onclick = "init()"></center>
+		<p id = "winnar"></p>
+		<p id = "piccy"></p>
+		<ul id="selectionList" style="list-style-type:none;"></ul>
+		<ul id = "new" style="list-style-type:none;"></ul>
+		<ul reversed id= "pastList" style="list-style-type:none;"></ul>
+	</form></center>
+</body>
+</html>
