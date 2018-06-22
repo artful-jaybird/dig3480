@@ -18,12 +18,12 @@ var possibleShapes = ['oval','triangle','rectangle','circle', 'tear', 'text'];
 
 function init() 
 	{ //this method for brackets is so much easier to track
-        canvas = document.getElementById('canvas');
-        context = canvas.getContext("2d");
+        	canvas = document.getElementById('canvas');
+        	context = canvas.getContext("2d");
  
-        window.addEventListener('resize', resizeCanvas, false);
-        window.addEventListener('orientationchange', resizeCanvas, false);
-        resizeCanvas();
+        	window.addEventListener('resize', resizeCanvas, false);
+        	window.addEventListener('orientationchange', resizeCanvas, false);
+        	resizeCanvas();
 		timer = setInterval(resizeCanvas, 20);
 		timerTwo = setInterval(newShape, 150);
 	}
@@ -54,7 +54,7 @@ function newShape()
 function drawCircle(circle)
 	{
 		 context.beginPath();
-		 context.arc(circle.x, circle.y, circle.size + ( Math.floor(Math.random()*5)), 0, degreesToRadians(360), true);
+		 context.arc(circle.x, circle.y, circle.size + (Math.floor(Math.random() * 5 )), 0, degreesToRadians(360), true);
 		 context.fillStyle = circle.color;
 		 context.fill();
 	}
@@ -62,20 +62,20 @@ function drawCircle(circle)
 function drawRectangle(rectangle) 
 	{
 		context.beginPath();
-      	context.rect(rectangle.x, rectangle.y, 100, 50);
-      	context.fillStyle = rectangle.color;
-      	context.fill();
-    }
+      		context.rect(rectangle.x, rectangle.y, 100, 50);
+      		context.fillStyle = rectangle.color;
+      		context.fill();
+    	}
 
 function drawTriangle(triangle) 
 	{
 		context.beginPath();
 		context.fillStyle = triangle.color;
-		context.moveTo(triangle.x,triangle.y);
+		context.moveTo(triangle.x + triangle.size + 10 + ( Math.floor(Math.random() * 5)),triangle.y);
 		context.lineTo(triangle.x,triangle.y);
-		context.lineTo(triangle.x,triangle.y + triangle.size + 70 + ( Math.floor(Math.random() * 9)));
-	    context.closePath();
-        context.fill();
+		context.lineTo(triangle.x,triangle.y + triangle.size + 10+ ( Math.floor(Math.random() * 5)));
+		context.closePath();
+        	context.fill();
 	}
 
 function drawOval(oval) 
@@ -108,8 +108,8 @@ function drawText(text)
 
 function resizeCanvas() 
 	{
-        canvas.width = window.innerWidth - 20;
-        canvas.height = window.innerHeight - 20;
+        	canvas.width = window.innerWidth - 20;
+        	canvas.height = window.innerHeight - 20;
 		fillBackgroundColor();
 
 		for (var i=0; i<shapes.length; i++) 
