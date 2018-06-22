@@ -72,7 +72,7 @@ function drawTriangle(triangle)
 		context.beginPath();
 		context.fillStyle = triangle.color;
 		context.moveTo(triangle.x + triangle.size + 10 + ( Math.floor(Math.random() * 5)), triangle.y);
-		context.lineTo(triangle.x + triangle.size + 10 + ( Math.floor(Math.random() * 5)), triangle.y);
+		context.lineTo(triangle.x, triangle.y);
 		context.lineTo(triangle.x, triangle.y + triangle.size + 10+ ( Math.floor(Math.random() * 5)));
 		context.closePath();
         	context.fill();
