@@ -1,0 +1,163 @@
+<!doctype HTML>
+<html>
+<head>
+	<title>
+	</title>
+<style>
+</style>
+</head>
+<script>
+var canvas;
+var context;
+var shapes = []
+var timer;
+var timerTwo;  //for shapegen
+
+//it wooorks again
+var possibleShapes = ['oval','triangle','rectangle','circle', 'tear', 'text'];
+
+function init() 
+	{ //this method for brackets is so much easier to track
+        canvas = document.getElementById('canvas');
+        context = canvas.getContext("2d");
+ 
+        window.addEventListener('resize', resizeCanvas, false);
+        window.addEventListener('orientationchange', resizeCanvas, false);
+        resizeCanvas();
+		timer = setInterval(resizeCanvas, 20);
+		timerTwo = setInterval(newShape, 150);
+	}
+
+function Shape(x, y, color) 
+	{
+		this.x = x;
+		this.y = y;
+		this.size = Math.random() * 20;
+		this.dx = Math.random()* 4;
+		this.dy = Math.random()* 4;
+		this.color = color;
+		this.shape = possibleShapes[Math.floor(Math.random() * possibleShapes.length)];
+	}
+
+function newShape()
+	{
+		var x = Math.random() * canvas.width;
+		var y = Math.random() * canvas.height;
+		var colors = ['#FE7B89', '#8A5082', '#6E5E90', '#758EB6', '#A5C9D1', '#C8E3CC'];
+		var color = colors[Math.floor(Math.random()*colors.length)];
+		if (shapes.length < 100)
+		{
+			shapes.push(new Shape(x, y, color));
+		}
+	}
+
+function drawCircle(circle)
+	{
+		 context.beginPath();
+		 context.arc(circle.x, circle.y, circle.size + ( Math.floor(Math.random()*5)), 0, degreesToRadians(360), true);
+		 context.fillStyle = circle.color;
+		 context.fill();
+	}
+
+function drawRectangle(rectangle) 
+	{
+		context.beginPath();
+      	context.rect(rectangle.x, rectangle.y, 100, 50);
+      	context.fillStyle = rectangle.color;
+      	context.fill();
+    }
+
+function drawTriangle(triangle) 
+	{
+		context.beginPath();
+		context.fillStyle = triangle.color;
+		context.moveTo(triangle.x,triangle.y);
+		context.lineTo(triangle.x,triangle.y);
+		context.lineTo(triangle.x,triangle.y + triangle.size + 70 + ( Math.floor(Math.random() * 9)));
+	    context.closePath();
+        context.fill();
+	}
+
+function drawOval(oval) 
+	{
+	  	context.beginPath();
+  		context.ellipse(oval.x, oval.y, 40, 75, 45 * Math.PI, 0, 2 * Math.PI);
+		context.fillStyle = oval.color;
+		context.fill();
+	}
+
+function drawTear(tear)
+	{
+		context.beginPath();
+		context.lineJoin = 'miter';
+		context.moveTo(tear.x, tear.y);
+		context.arc(tear.x, tear.y + 42, 20, 5.75, 3.66, false);
+		context.quadraticCurveTo(tear.x - 3.5, tear.y + 15, tear.x, tear.y);
+		context.closePath();
+		context.lineWidth = 2;
+		context.fillStyle = tear.color;
+		context.fill();
+	  }
+
+function drawText(text)
+	{
+		context.fillStyle = text.color;
+		context.font = 'bold italic 2em serif';
+		context.fillText('Visual representation of a panic attack', text.x, text.y);
+	}
+
+function resizeCanvas() 
+	{
+        canvas.width = window.innerWidth - 20;
+        canvas.height = window.innerHeight - 20;
+		fillBackgroundColor();
+
+		for (var i=0; i<shapes.length; i++) 
+		{
+			if (shapes[i].shape == 'rectangle') 
+			{
+				drawRectangle(shapes[i]);
+			} 
+			else if (shapes[i].shape == 'circle') 
+			{
+				drawCircle(shapes[i]);
+			} 
+			else if (shapes[i].shape == 'triangle') 
+			{
+				drawTriangle(shapes[i]);
+			} 
+			else if (shapes[i].shape == 'tear') 
+			{
+				drawTear(shapes[i]);
+			} 
+			else if (shapes[i].shape == 'oval') 
+			{
+				drawOval(shapes[i]);
+			} 
+			else if (shapes[i].shape == 'text') 
+			{
+				drawText(shapes[i]);
+			}
+			if (shapes[i].x + shapes[i].dx > canvas.width || shapes[i].x + shapes[i].dx < 0)
+				shapes[i].dx = -shapes[i].dx;
+			if (shapes[i].y + shapes[i].dy > canvas.height || shapes[i].y + shapes[i].dy < canvas.height/2)
+				shapes[i].dy = -shapes[i].dy;
+		}		 
+    }
+
+function fillBackgroundColor() 
+	{
+		 context.fillStyle = "white";
+		 context.fillRect(0, 0, canvas.width, canvas.height);
+	}
+	function degreesToRadians(degrees) {
+		return (degrees * Math.PI)/180;
+	}
+	
+window.onload = init;
+</script>
+<body>
+	<canvas id="canvas" width="600" height="500">Canvas is not working properly.
+	</canvas>
+</body>
+</html>
